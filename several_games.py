@@ -9,15 +9,21 @@ import generators
 def gen_dict_sal():
     qtd = np.random.randint(5, 10)
 
-    snk = generators.gen_snakes(5)
-    lad = generators.gen_ladders(5)
+    snk = generators.gen_snakes(qtd)
+    lad = generators.gen_ladders(qtd)
 
-    dict_sal = snk + lad
+    dict_sal = snk.update(lad)
+    
+    print(dict_sal)
+
+    return dict_sal
     
 # %%
 def snake_and_ladders(pos):
     
-    pos = gen_dict_sal.dict_sal.get(pos, pos)
+    dict_sal = gen_dict_sal()
+
+    pos = dict_sal.get(pos, pos)
 
     return pos
 

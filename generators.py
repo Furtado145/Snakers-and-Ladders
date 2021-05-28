@@ -1,7 +1,6 @@
 from numpy import random
 from numpy.lib import deprecate_with_doc
 
-
 board = list(range(1, 101))
 
 

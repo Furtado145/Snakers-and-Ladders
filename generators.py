@@ -1,6 +1,7 @@
 from numpy import random
+from numpy.lib import deprecate_with_doc
 
-qtd = random.randint(5, 10)
+
 board = list(range(1, 101))
 
 
@@ -14,10 +15,12 @@ def gen_snakes(x):
         key = random.randint(v_min, v_max)
         value = key - random.randint(5, 10)
 
-        board.pop(key)
-        board.pop(value)
-
-        dict_snake[key] = value
+        if key in dict_snake:
+            key = random.randint(v_min, v_max)
+        elif value in dict_snake:
+            value = key - random.randint(5, 10)
+        else:
+            dict_snake[key] = value
 
     print(f"Snakes - {dict_snake}")
 
@@ -30,16 +33,11 @@ def gen_ladders(x):
         key = random.randint(v_min, v_max)
         value = key + random.randint(5, 10)
 
-        board.pop(key)
-        board.pop(value)
-
-        dict_ladders[key] = value
+        if key in dict_ladders:
+            key = random.randint(v_min, v_max)
+        elif value in dict_ladders:
+            value = random.randint(5, 10)
+        else:
+            dict_ladders[key] = value
     
     print(f"Ladders - {dict_ladders}")
-
-
-print(qtd) 
-
-gen_snakes(qtd)
-gen_ladders(qtd)
-

@@ -1,15 +1,28 @@
+# %% 
+
 import numpy as np
+import generators
+
+# %%
 
 
+def gen_dict_sal():
+    qtd = np.random.randint(5, 10)
+
+    snk = generators.gen_snakes(5)
+    lad = generators.gen_ladders(5)
+
+    dict_sal = snk + lad
+    
+# %%
 def snake_and_ladders(pos):
-    dict_sal = {12: 2, 14: 11, 17: 4, 31: 19, 35: 22,
-                3: 16, 5: 7, 15: 25, 18: 20, 21: 32}
-
-    pos = dict_sal.get(pos, pos)
+    
+    pos = gen_dict_sal.dict_sal.get(pos, pos)
 
     return pos
 
 
+# %%
 def roll_die(player):
     dado = np.random.randint(1, 6)
     player += dado
@@ -54,3 +67,5 @@ for i in range(num_games):
 
 print(f"""Palyer 1 - {p1_wins}
 Player 2 - {p2_wins} """)
+
+# %%

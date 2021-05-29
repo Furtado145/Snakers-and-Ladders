@@ -1,4 +1,3 @@
-from numpy import random
 import numpy as np
 
 board = list(range(1, 101))
@@ -11,14 +10,14 @@ def gen_snakes(x):
     v_min = 10
 
     for i in range(x):
-        key = random.randint(v_min, v_max)
+        key = np.random.randint(v_min, v_max)
 
         if key in dict_snk:
-            key = random.randint(v_min, v_max)
+            key = np.random.randint(v_min, v_max)
 
-        value = key - random.randint(5, 10)
+        value = key - np.random.randint(5, 10)
         if value in dict_snk:
-            value = key - random.randint(5, 10)
+            value = key - np.random.randint(5, 10)
 
         dict_snk[key] = value
 
@@ -27,26 +26,21 @@ def gen_snakes(x):
 
 # Generate a dict of random ladders in game
 def gen_ladders(x):
+    snk = gen_snakes(x)
+
     dict_lad = {}
     v_min = 5
     v_max = len(board) - 20
 
     for i in range(x):
-        key = random.randint(v_min, v_max)
-        if key in dict_lad or key in dict_snake:
-            key = random.randint(v_min, v_max)
+        key = np.random.randint(v_min, v_max)
+        if key in dict_lad or key in snk:
+            key = np.random.randint(v_min, v_max)
 
-        value = key + random.randint(5, 10)
-        if value in dict_lad or value in dict_snake:
-            value = key + random.randint(5, 10)
+        value = key + np.random.randint(5, 10)
+        if value in dict_lad or value in snk:
+            value = key + np.random.randint(5, 10)
 
         dict_lad[key] = value
 
     return dict_lad
-
-
-qtd = np.random.randint(5, 10)
-
-dict_snake = gen_snakes(qtd)
-
-dict_ladders = gen_ladders(qtd)

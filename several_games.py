@@ -1,11 +1,12 @@
 import numpy as np
-from generators import dict_snake, dict_ladders
+from generators import gen_snakes, gen_ladders
 
 
-# Call generators to get new skakes and ladders for each match
+# Call generators to get new skakes and ladders
 def gen_dict_sal():
-    snk = dict_snake
-    lad = dict_ladders
+    gen_dict_sal.qtd = np.random.randint(5, 10)
+    snk = gen_snakes(gen_dict_sal.qtd)
+    lad = gen_ladders(gen_dict_sal.qtd)
 
     snk.update(lad)
     return snk
@@ -13,7 +14,6 @@ def gen_dict_sal():
 
 # Func to verify is the posiction is a key value of a snake or a ladder
 def snake_and_ladders(pos):
-
     dict_sal = gen_dict_sal()
 
     pos = dict_sal.get(pos, pos)
@@ -31,6 +31,9 @@ def roll_die(player):
     return player
 
 
+# Getting num of snakes
+l_snakes = []
+
 # Winning count
 p1_wins = p2_wins = 0
 
@@ -40,6 +43,9 @@ num_games = 10000
 # Lets play
 
 for i in range(num_games):
+    # Active the func to gen new snakes and ladders every match
+    sal = gen_dict_sal()
+    l_snakes.append(gen_dict_sal.qtd)
 
     # Initial positions
     p1 = p2 = 1
@@ -48,21 +54,20 @@ for i in range(num_games):
     goal = 100
 
     while True:
-        msg = f"Rodada {i+1}: "
+        msg = f"Rodada {i + 1}: "
 
         p1 = roll_die(p1)
         if p1 > goal:
             p1_wins += 1
-            print(msg + "Player1 Venceu!")
+            # print(msg + "Player1 Venceu!")
             break
 
         p2 = roll_die(p2)
         if p2 > goal:
             p2_wins += 1
-            print(msg + "Player2 Venceu!")
+            # print(msg + "Player2 Venceu!")
             break
 
     i += 1
 
-print(f"""Palyer 1 - {p1_wins}
-Player 2 - {p2_wins} """)
+print(f"Palyer 1 - {p1_wins}\nPlayer 2 - {p2_wins}\nMédia de cobras = {sum(l_snakes) / num_games}")

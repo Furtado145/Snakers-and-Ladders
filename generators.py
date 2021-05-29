@@ -4,6 +4,7 @@ import numpy as np
 board = list(range(1, 101))
 
 
+# Generate a dict of random snakes in game
 def gen_snakes(x):
     dict_snk = {}
     v_max = len(board) - 10
@@ -21,15 +22,15 @@ def gen_snakes(x):
 
         dict_snk[key] = value
 
-    # print(f"Snakes - {dict_snake}")
-
     return dict_snk
 
 
+# Generate a dict of random ladders in game
 def gen_ladders(x):
     dict_lad = {}
     v_min = 5
     v_max = len(board) - 20
+
     for i in range(x):
         key = random.randint(v_min, v_max)
         if key in dict_lad or key in dict_snake:
@@ -40,8 +41,6 @@ def gen_ladders(x):
             value = key + random.randint(5, 10)
 
         dict_lad[key] = value
-
-    # print(f"Ladders - {dict_ladders}")
 
     return dict_lad
 

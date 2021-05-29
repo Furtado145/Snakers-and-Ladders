@@ -1,26 +1,21 @@
-# %% 
-
-import numpy as np
-import generators
-
 # %%
+import numpy as np
+from generators import dict_snake, dict_ladders
 
 
 def gen_dict_sal():
-    qtd = np.random.randint(5, 10)
+    snk = dict_snake
+    lad = dict_ladders
 
-    snk = generators.gen_snakes(qtd)
-    lad = generators.gen_ladders(qtd)
+    # print(snk)
+    # print(lad)
+    snk.update(lad)
+    return snk
 
-    dict_sal = snk.update(lad)
-    
-    print(dict_sal)
 
-    return dict_sal
-    
 # %%
 def snake_and_ladders(pos):
-    
+
     dict_sal = gen_dict_sal()
 
     pos = dict_sal.get(pos, pos)
@@ -42,7 +37,7 @@ def roll_die(player):
 p1_wins = p2_wins = 0
 
 # How many games will be played?
-num_games = 10
+num_games = 1000
 
 # Lets play
 

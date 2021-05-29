@@ -35,7 +35,7 @@ p1_wins = p2_wins = 0
 p1 = p2 = 1
 
 # GOAL
-max = 100
+goal = 100
 
 
 # %%
@@ -44,14 +44,14 @@ max = 100
 while True:
     print(f"\nPlayer 1 - posicao atual = {p1}")
     p1 = roll_die(p1)
-    if p1 > max:
+    if p1 > goal:
         p1_wins += 1
         print('Player1 Wins')
         break
 
     print(f"\nPlayer 2 - posicao atual = {p2}")
     p2 = roll_die(p2)
-    if p2 > max:
+    if p2 > goal:
         p2_wins += 1
         print('Player2 Wins')
         break

@@ -1,32 +1,22 @@
 import numpy as np
-from generators import gen_snakes, gen_ladders
 
 
-# Call generators to get new skakes and ladders
-def gen_dict_sal():
-    gen_dict_sal.qtd = np.random.randint(5, 10)
-    snk = gen_snakes(gen_dict_sal.qtd)
-    lad = gen_ladders(gen_dict_sal.qtd)
+def snakes_and_ladders(pos):
+    dict_sal = {12: 2, 14: 11, 17: 4, 31: 19, 35: 22,
+                3: 16, 5: 7, 15: 25, 18: 20, 21: 32}
 
-    snk.update(lad)
-    return snk
-
-
-# Func to verify is the posiction is a key value of a snake or a ladder
-def snake_and_ladders(pos):
-    dict_sal = gen_dict_sal()
-
-    pos = dict_sal.get(pos, pos)
+    if pos in dict_sal:
+        pos = dict_sal.get(pos)
 
     return pos
 
 
-# Func to roll die
 def roll_die(player):
     dado = np.random.randint(1, 6)
     player += dado
 
-    player = snake_and_ladders(player)
+    # CHECK POSITION
+    player = snakes_and_ladders(player)
 
     return player
 
@@ -35,16 +25,15 @@ def roll_die(player):
 p1_wins = p2_wins = 0
 
 # How many games will be played?
-num_games = 10000
+num_games = 1000
 
 # Lets play
 
 for i in range(num_games):
-    # Active the func to gen new snakes and ladders every match
-    sal = gen_dict_sal()
 
     # Initial positions
-    p1 = p2 = 1
+    p1 = 1
+    p2 = 7
 
     # GOAL
     goal = 100

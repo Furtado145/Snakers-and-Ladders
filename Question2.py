@@ -31,6 +31,9 @@ def roll_die(player):
     return player
 
 
+# Getting num of snakes
+l_snakes = []
+
 # Winning count
 p1_wins = p2_wins = 0
 
@@ -42,6 +45,7 @@ num_games = 10000
 for i in range(num_games):
     # Active the func to gen new snakes and ladders every match
     sal = gen_dict_sal()
+    l_snakes.append(gen_dict_sal.qtd)
 
     # Initial positions
     p1 = p2 = 1
@@ -66,4 +70,4 @@ for i in range(num_games):
 
     i += 1
 
-print(f"Player 1 - {p1_wins}\nPlayer 2 - {p2_wins}")
+print(f"Média de cobras = {sum(l_snakes) / num_games}")

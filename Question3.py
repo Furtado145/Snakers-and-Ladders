@@ -31,11 +31,18 @@ def roll_die(player):
     return player
 
 
+# Getting num of snakes
+l_snakes = []
+
 # Winning count
 p1_wins = p2_wins = 0
 
 # How many games will be played?
 num_games = 10000
+
+# Average count Rolls
+list_rolls = []
+
 
 # Lets play
 
@@ -49,7 +56,12 @@ for i in range(num_games):
     # GOAL
     goal = 100
 
+    # Count Rolls:
+    rolls = 0
+
     while True:
+        rolls += 1
+
         msg = f"Rodada {i + 1}: "
 
         p1 = roll_die(p1)
@@ -65,5 +77,8 @@ for i in range(num_games):
             break
 
     i += 1
+    list_rolls.append(rolls)
 
-print(f"Player 1 - {p1_wins}\nPlayer 2 - {p2_wins}")
+mRolls = sum(list_rolls) / num_games
+
+print(f"Media de rolagens: {mRolls}")

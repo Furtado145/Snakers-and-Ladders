@@ -45,7 +45,6 @@ num_games = 10000
 for i in range(num_games):
     # Active the func to gen new snakes and ladders every match
     sal = gen_dict_sal()
-    l_snakes.append(gen_dict_sal.qtd)
 
     # Initial positions
     p1 = p2 = 1
@@ -57,17 +56,17 @@ for i in range(num_games):
         msg = f"Rodada {i + 1}: "
 
         p1 = roll_die(p1)
-        if p1 > goal:
+        if p1 >= goal:
             p1_wins += 1
             # print(msg + "Player1 Venceu!")
             break
 
         p2 = roll_die(p2)
-        if p2 > goal:
+        if p2 >= goal:
             p2_wins += 1
             # print(msg + "Player2 Venceu!")
             break
 
     i += 1
 
-print(f"Palyer 1 - {p1_wins}\nPlayer 2 - {p2_wins}\nMédia de cobras = {sum(l_snakes) / num_games}")
+print(f"Player 1 - {p1_wins}\nPlayer 2 - {p2_wins}")

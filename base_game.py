@@ -1,4 +1,3 @@
-# %%
 import numpy as np
 
 
@@ -26,8 +25,6 @@ def roll_die(player):
     return player
 
 
-# %%
-
 # Wining Counting
 p1_wins = p2_wins = 0
 
@@ -36,9 +33,6 @@ p1 = p2 = 1
 
 # GOAL
 goal = 100
-
-
-# %%
 
 # STARTING
 while True:
@@ -55,5 +49,3 @@ while True:
         p2_wins += 1
         print('Player2 Wins')
         break
- 
-# %%
